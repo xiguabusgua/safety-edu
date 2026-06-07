@@ -10,8 +10,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
-RUN apk add --no-cache python3 make g++
+RUN npm install -g pnpm@9.12.0 --registry=https://registry.npmmirror.com && \
+    apk add --no-cache python3 make g++
 
 # 1. Cached dependency install
 COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
