@@ -21,7 +21,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
-    "shared-types": "workspace:*",
+    "shared-types": "file:../../packages/shared-types",
     "sonner": "^1.5.0",
     "zustand": "^4.5.4"
   },
