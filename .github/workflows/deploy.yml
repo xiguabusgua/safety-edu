@@ -50,44 +50,31 @@ jobs:
           pnpm --filter api exec tsc --noEmit
           pnpm --filter web exec tsc --noEmit
 
-      # ---- 2. 同步代码到服务器(通过 rsync over SSH) ----
-      - name: Sync code → /opt/safety-edu-staging
-        run: |
-          mkdir -p ~/.ssh
-          # DEPLOY_USER 在 GitHub Actions 里设为普通 secret,或直接用 deploy
-          printf '%s\n' \
-            "Host deploy-server" \
-            "  HostName ${{ secrets.DEPLOY_HOST }}" \
-            "  User deploy" \
-            "  Port 22" \
-            "  IdentityFile ~/.ssh/deploy_key" \
-            "  StrictHostKeyChecking=no" > ~/.ssh/config
-          chmod 600 ~/.ssh/config
-          printf '%s\n' "${{ secrets.DEPLOY_KEY }}" | tr -d '\r' > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          rsync -avz --delete \
-            --exclude='.env' \
-            --exclude='mysql-data' \
-            --exclude='.git' \
-            --exclude='node_modules' \
-            --exclude='.reasonix' \
-            --exclude='.codegraph' \
-            --exclude='deploy.tgz' \
-            ./ deploy-server:/opt/safety-edu-staging/
-
-      # ---- 3. 在服务器上:rsync staging → prod,build,up,verify ----
-      - name: Deploy · rsync → build → up → health check
+      # ---- 2. 在服务器上: git clone → rsync → build → up → verify ----
+      #    用 GITHUB_TOKEN 拉代码，避免 SSH key 格式兼容问题
+      - name: Deploy · clone → build → up → health check
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: deploy
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
+          envs: GITHUB_TOKEN
           script: |
             set -e
 
             PROD=/opt/safety-edu
             STAGING=/opt/safety-edu-staging
+            REPO_URL="https://xiguabusgua:$GITHUB_TOKEN@github.com/xiguabusgua/safety-edu.git"
+
+            # ---- clone 到 staging(用 GITHUB_TOKEN 认证) ----
+            if [ -d "$STAGING/.git" ]; then
+              echo "📦 Updating existing staging..."
+              cd "$STAGING" && git pull origin main
+            else
+              echo "📦 Fresh clone to staging..."
+              git clone --branch main "$REPO_URL" "$STAGING"
+            fi
 
             # ---- 同步 staging → prod(保留 prod 自己的 .env) ----
             cd "$PROD"
