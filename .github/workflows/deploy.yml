@@ -53,10 +53,15 @@ jobs:
       # ---- 2. 同步代码到服务器(通过 rsync over SSH) ----
       - name: Sync code → /opt/safety-edu-staging
         run: |
-          # 安装 rsync(ubuntu-latest 默认没有)
-          apt-get update -qq && apt-get install -y -qq rsync > /dev/null 2>&1
           mkdir -p ~/.ssh
-          printf '%s\n' "Host deploy-server" "  HostName ${{ secrets.DEPLOY_HOST }}" "  User ${{ secrets.DEPLOY_USER }}" "  Port 22" "  IdentityFile ~/.ssh/deploy_key" "  StrictHostKeyChecking=no" > ~/.ssh/config
+          # DEPLOY_USER 在 GitHub Actions 里设为普通 secret,或直接用 deploy
+          printf '%s\n' \
+            "Host deploy-server" \
+            "  HostName ${{ secrets.DEPLOY_HOST }}" \
+            "  User deploy" \
+            "  Port 22" \
+            "  IdentityFile ~/.ssh/deploy_key" \
+            "  StrictHostKeyChecking=no" > ~/.ssh/config
           chmod 600 ~/.ssh/config
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
@@ -75,7 +80,7 @@ jobs:
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
+          username: deploy
           key: ${{ secrets.DEPLOY_KEY }}
           port: 22
           script: |
