@@ -19,7 +19,7 @@ COPY apps/api/package.json ./apps/
 COPY packages/shared-types/package.json ./packages/shared-types/
 
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+    pnpm install
 
 # 2. Source code (only api — the runner lives inside apps/api/src/workers/)
 COPY packages/ ./packages/

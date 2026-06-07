@@ -19,15 +19,15 @@ COPY apps/api/package.json apps/web/package.json ./apps/
 COPY packages/shared-types/package.json ./packages/shared-types/
 
 RUN --mount=type=cache,id=pnpm-store,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+    pnpm install
 
 # 2. Source code
 COPY packages/ ./packages/
 COPY apps/api/ ./apps/api/
 COPY apps/web/ ./apps/web/
 
-# 3. Generate Prisma client
-RUN cd apps/api && pnpm prisma generate
+# 3. Generate Prisma client (run from root to avoid workspace symlink issues)
+RUN pnpm --filter api prisma generate
 
 # 4. Build web (use pnpm --filter, not npm, for workspace consistency)
 RUN pnpm --filter web build
