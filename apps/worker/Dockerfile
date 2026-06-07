@@ -46,7 +46,7 @@ RUN apt-get update -qq && \
 
 # Install Python worker dependencies (global, so `python3` finds them)
 COPY apps/worker/requirements.txt /tmp/worker-requirements.txt
-RUN pip3 install --no-cache-dir -r /tmp/worker-requirements.txt && \
+RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/worker-requirements.txt && \
     rm /tmp/worker-requirements.txt
 
 # Copy workspace + node_modules
