@@ -37,7 +37,7 @@ jobs:
         run: npm install -g pnpm@9
 
       - name: Install dependencies
-        run: pnpm install --ignore-scripts
+        run: pnpm install --ignore-scripts --no-frozen-lockfile
 
       - name: Type check (api + web)
         env:
@@ -46,6 +46,7 @@ jobs:
           COOKIE_SECRET: 'ci-typecheck-cookie-32chars!'
           ACCOUNT_ENC_KEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
         run: |
+          pnpm --filter api exec prisma generate
           pnpm --filter api exec tsc --noEmit
           pnpm --filter web exec tsc --noEmit
 
