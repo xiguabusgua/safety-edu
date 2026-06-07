@@ -27,7 +27,7 @@ COPY apps/api/ ./apps/api/
 COPY apps/web/ ./apps/web/
 
 # 3. Generate Prisma client
-RUN cd apps/api && npx prisma generate
+RUN cd apps/api && pnpm prisma generate
 
 # 4. Build web (use pnpm --filter, not npm, for workspace consistency)
 RUN pnpm --filter web build
