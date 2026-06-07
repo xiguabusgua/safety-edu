@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "description": "合并 jiangsu-safety-platform-skip + WeBan 的安全教育一站式平台",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev:web": "pnpm --filter web dev",
     "dev:api": "pnpm --filter api dev",

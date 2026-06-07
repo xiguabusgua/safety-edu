@@ -1,7 +1,7 @@
 # =============================================================================
 # safety-edu API Dockerfile
 #
-# Multi-stage: pre-build on builder (x86) → copy dist to minimal runtime.
+# Multi-stage: build on builder (x86) → copy dist to minimal runtime.
 # =============================================================================
 
 # ---- Builder Stage ----
@@ -11,18 +11,13 @@ WORKDIR /app
 
 RUN apk add --no-cache python3 make g++
 
-# Install deps
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY apps/api/package.json ./apps/api/
-COPY apps/web/package.json ./apps/web/
-COPY packages/shared-types/package.json ./packages/shared-types/
-
-RUN npm install --legacy-peer-deps
-
-# Source
+# Install deps via npm workspaces
+COPY package.json ./
 COPY packages/ ./packages/
 COPY apps/api/ ./apps/api/
 COPY apps/web/ ./apps/web/
+
+RUN npm install --legacy-peer-deps
 
 # Generate Prisma client
 RUN cd apps/api && npx prisma generate
