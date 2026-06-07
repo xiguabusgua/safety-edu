@@ -50,28 +50,21 @@ jobs:
           pnpm --filter api exec tsc --noEmit
           pnpm --filter web exec tsc --noEmit
 
-      # ---- 2. 同步代码到服务器(走 staging 暂存) ----
-      #    用 rsync 模式,scp-action 自动调用 rsync
-      #    exclude: .env (服务端永不被覆盖) / .git / node_modules / docker volumes
+      # ---- 2. 同步代码到服务器(通过 tar+ssh pipe，从 runner 本地执行) ----
       - name: Sync code → /opt/safety-edu-staging
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_KEY }}
-          port: 22
-          source: "./"
-          target: "/opt/safety-edu-staging/"
-          rsync: true
-          args: >-
-            -avz
-            --exclude=.env
-            --exclude=mysql-data
-            --exclude=.git
-            --exclude=node_modules
-            --exclude=.reasonix
-            --exclude=.codegraph
-            --exclude=deploy.tgz
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          tar -czf - \
+            --exclude='.env' \
+            --exclude='mysql-data' \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.reasonix' \
+            --exclude='.codegraph' \
+            --exclude='deploy.tgz' \
+            . | ssh -o StrictHostKeyChecking=no -o StrictHostKeyChecking=no -p 22 -i ~/.ssh/deploy_key ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "mkdir -p /opt/safety-edu-staging && cd /opt/safety-edu-staging && tar -xzf -"
 
       # ---- 3. 在服务器上:rsync staging → prod,build,up,verify ----
       - name: Deploy · rsync → build → up → health check
