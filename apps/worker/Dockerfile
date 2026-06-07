@@ -26,7 +26,7 @@ COPY packages/ ./packages/
 COPY apps/api/ ./apps/api/
 
 # 3. Generate Prisma client
-RUN cd apps/api && npx prisma generate
+RUN pnpm --filter api prisma generate
 
 # 4. Build api (tsc) — produces dist/workers/taskRunner.js
 RUN pnpm --filter api build
