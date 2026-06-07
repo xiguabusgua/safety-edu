@@ -50,13 +50,13 @@ jobs:
           pnpm --filter api exec tsc --noEmit
           pnpm --filter web exec tsc --noEmit
 
-      # ---- 2. 上传部署脚本到服务器 ----
-      - name: Upload deploy script to server
+      # ---- 2. 上传代码到服务器(用密码认证) ----
+      - name: Upload code to server
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: root
-          key: ${{ secrets.DEPLOY_KEY }}
+          username: deploy
+          password: ${{ secrets.DEPLOY_PASSWORD }}
           port: 22
           source: "./"
           target: "/opt/safety-edu-staging/"
@@ -69,8 +69,8 @@ jobs:
         uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.DEPLOY_HOST }}
-          username: root
-          key: ${{ secrets.DEPLOY_KEY }}
+          username: deploy
+          password: ${{ secrets.DEPLOY_PASSWORD }}
           port: 22
           script: |
             set -e
