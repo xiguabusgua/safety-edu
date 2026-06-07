@@ -1,30 +1,7 @@
 # =============================================================================
 # safety-edu Runner Dockerfile
-#
-# Multi-stage: build on builder (x86) → copy dist to minimal runtime.
+# Pre-built: dist/ created on Mac, uploaded to server.
 # =============================================================================
-
-# ---- Builder Stage ----
-FROM node:20-alpine AS builder
-
-WORKDIR /app
-
-RUN apk add --no-cache python3 make g++
-
-# Install API deps via npm workspaces
-COPY package.json ./
-COPY packages/ ./packages/
-COPY apps/api/ ./apps/api/
-
-RUN npm install --legacy-peer-deps
-
-# Generate Prisma client
-RUN cd apps/api && npx prisma generate
-
-# Build TypeScript
-RUN cd apps/api && npm run build
-
-# ---- Production Stage ----
 FROM node:20-bookworm-slim
 
 WORKDIR /app
@@ -40,13 +17,10 @@ COPY apps/worker/requirements.txt /tmp/requirements.txt
 RUN pip3 install --no-cache-dir --break-system-packages -i https://pypi.tuna.tsinghua.edu.cn/simple -r /tmp/requirements.txt \
     && rm /tmp/requirements.txt
 
-# Copy built artifacts
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/packages ./packages
-COPY --from=builder /app/apps/api/dist ./apps/api/dist
-COPY --from=builder /app/apps/api/node_modules ./apps/api/node_modules
-COPY --from=builder /app/apps/api/prisma ./apps/api/prisma
-COPY --from=builder /app/apps/api/package.json ./apps/api/
+# Copy pre-built artifacts
+COPY apps/api/dist ./apps/api/dist
+COPY apps/api/prisma ./apps/api/prisma
+COPY apps/api/node_modules ./apps/api/node_modules
 COPY apps/worker/ ./apps/worker/
 
 WORKDIR /app/apps/api

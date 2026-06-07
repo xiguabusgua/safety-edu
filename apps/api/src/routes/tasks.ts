@@ -65,7 +65,7 @@ router.post('/', async (req, res) => {
 
   // 一个事务:创建 task + 累加 user.taskCount
   // 避免 task 建了但 user 计数没更新的不一致
-  const task = await prisma.$transaction(async (tx) => {
+  const task = await prisma.$transaction(async (tx: any) => {
     const t = await tx.task.create({
       data: {
         userId: userId ?? null,

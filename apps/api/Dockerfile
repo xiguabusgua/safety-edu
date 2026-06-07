@@ -1,44 +1,22 @@
 # =============================================================================
 # safety-edu API Dockerfile
-#
-# Multi-stage: build on builder (x86) → copy dist to minimal runtime.
+# Pre-built: dist/ + node_modules created on Mac, uploaded to server.
+# Docker 只负责运行，不 build。
 # =============================================================================
-
-# ---- Builder Stage ----
-FROM node:20-alpine AS builder
-
-WORKDIR /app
-
-RUN apk add --no-cache python3 make g++
-
-# Install deps via npm workspaces
-COPY package.json ./
-COPY packages/ ./packages/
-COPY apps/api/ ./apps/api/
-COPY apps/web/ ./apps/web/
-
-RUN npm install --legacy-peer-deps
-
-# Generate Prisma client
-RUN cd apps/api && npx prisma generate
-
-# Build web and api
-RUN cd apps/web && npm run build
-RUN cd apps/api && npm run build
-
-# ---- Production Stage ----
 FROM node:20-alpine
 
 WORKDIR /app
+
 RUN apk add --no-cache openssl
 
-# Copy pre-built artifacts
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/packages ./packages
-COPY --from=builder /app/apps/api/dist ./apps/api/dist
-COPY --from=builder /app/apps/api/prisma ./apps/api/prisma
-COPY --from=builder /app/apps/api/entrypoint.sh ./apps/api/entrypoint.sh
-COPY --from=builder /app/apps/web/dist ./apps/web/dist
+# Copy pre-built artifacts (x86 node_modules from Docker builder)
+COPY apps/api/dist ./apps/api/dist
+COPY apps/api/prisma ./apps/api/prisma
+COPY apps/api/entrypoint.sh ./apps/api/entrypoint.sh
+COPY apps/web/dist ./apps/web/dist
+
+# Copy node_modules (pre-built via Docker on server)
+COPY node_modules ./node_modules
 
 WORKDIR /app/apps/api
 EXPOSE 3002

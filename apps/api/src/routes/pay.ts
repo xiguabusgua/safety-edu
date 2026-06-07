@@ -149,7 +149,7 @@ router.post('/notify-wechat', payLimiter, async (req, res) => {
   }
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       const t = await tx.task.findUnique({ where: { id: decrypted.out_trade_no } });
       if (!t) return;
       // 幂等:已支付的任务不再处理
@@ -192,7 +192,7 @@ router.post('/mock-callback', payLimiter, async (req, res) => {
     throw new BadRequest('缺少 out_trade_no');
   }
   const tradeNo = 'MOCK-WX-' + Date.now();
-  await prisma.$transaction(async (tx) => {
+  await prisma.$transaction(async (tx: any) => {
     const t = await tx.task.findUnique({ where: { id: out_trade_no } });
     if (!t) return;
     if (t.status !== 'awaiting_payment') return;

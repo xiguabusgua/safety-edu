@@ -180,10 +180,10 @@ setInterval(async () => {
       where: { id: { in: taskIds }, status: 'running' },
       select: { id: true, startedAt: true },
     });
-    const startedMap = new Map(tasks.map((t) => [t.id, t.startedAt]));
+    const startedMap = new Map<string, Date | null>(tasks.map((t: any) => [t.id, t.startedAt as Date | null]));
     for (const [taskId, job] of activeJobs) {
-      const startedAt = startedMap.get(taskId);
-      const start = startedAt?.getTime() ?? now;
+      const startedAt = startedMap.get(taskId) as Date | null | undefined;
+      const start = startedAt ? (startedAt as Date).getTime() : now;
       if (now - start > TASK_TIMEOUT_MS) {
         console.warn(`[runner] task ${taskId} timeout, killing`);
         job.kill();

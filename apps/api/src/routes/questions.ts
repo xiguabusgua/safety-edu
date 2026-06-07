@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
     prisma.question.count({ where }),
   ]);
 
-  const questions = rows.map((r) => ({
+  const questions = rows.map((r: any) => ({
     ...r,
     options: safeJson(r.options),
   }));

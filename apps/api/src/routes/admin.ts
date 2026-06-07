@@ -139,14 +139,14 @@ router.get('/stats', requireAdmin, async (_req, res) => {
     revenue: ((revenue._sum.amount ?? 0) / 100).toFixed(2),
     failed,
     uniqueUsers,
-    byPlatform: byPlatform.map((b) => ({
+    byPlatform: byPlatform.map((b: any) => ({
       platform: b.platform,
       count: b._count._all,
       revenue: ((b._sum.amount ?? 0) / 100).toFixed(2),
     })),
-    byStatus: byStatus.map((b) => ({ status: b.status, count: b._count._all })),
-    byProvince: byProvince.map((b) => ({ province: b.province, count: b._count._all })),
-    bySchool: bySchool.map((b) => ({ school: b.schoolName, count: b._count._all })),
+    byStatus: byStatus.map((b: any) => ({ status: b.status, count: b._count._all })),
+    byProvince: byProvince.map((b: any) => ({ province: b.province, count: b._count._all })),
+    bySchool: bySchool.map((b: any) => ({ school: b.schoolName, count: b._count._all })),
   });
 });
 
