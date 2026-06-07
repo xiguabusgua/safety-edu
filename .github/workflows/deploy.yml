@@ -32,19 +32,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # ---- 1. 类型检查(防止发错代码) ----
+      # ---- 1. 安装依赖(pnpm monorepo) ----
+      - name: Install pnpm
+        run: npm install -g pnpm@9
+
       - name: Install dependencies
-        run: npm ci --ignore-scripts
+        run: pnpm install --ignore-scripts
 
       - name: Type check (api + web)
+        env:
+          DATABASE_URL: 'mysql://fake:fake@localhost:3306/fake'
+          JWT_SECRET: 'ci-typecheck-secret-32chars!'
+          COOKIE_SECRET: 'ci-typecheck-cookie-32chars!'
+          ACCOUNT_ENC_KEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
         run: |
-          cd apps/api
-          DATABASE_URL='mysql://fake:fake@localhost:3306/fake' \
-          JWT_SECRET='ci-typecheck-secret-32chars!' \
-          COOKIE_SECRET='ci-typecheck-cookie-32chars!' \
-          ACCOUNT_ENC_KEY=$(printf 'a%.0s' {1..64}) \
-            npx tsc --noEmit
-          cd ../web && npx tsc --noEmit
+          pnpm --filter api exec tsc --noEmit
+          pnpm --filter web exec tsc --noEmit
 
       # ---- 2. 同步代码到服务器(走 staging 暂存) ----
       #    用 rsync 模式,scp-action 自动调用 rsync
