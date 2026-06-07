@@ -1,0 +1,95 @@
+# =============================================================================
+# docker-compose.yml — safety-edu 一站式部署
+#
+# 服务：
+#   mysql  — MySQL 8 数据库
+#   api    — Express API (端口 3002, 同时 serve 前端静态文件)
+#   runner — 任务轮询 + Python 子进程执行
+#
+# 使用：
+#   1. 复制 .env.example.docker 为 .env 并填写配置
+#   2. docker compose up -d
+# =============================================================================
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: safety-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: lens_light
+      MYSQL_USER: lens_light
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - safety-net
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: safety-api
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+    environment:
+      NODE_ENV: production
+      PORT: 3002
+      DATABASE_URL: mysql://lens_light:${MYSQL_PASSWORD}@mysql:3306/lens_light
+      ACCOUNT_ENC_KEY: ${ACCOUNT_ENC_KEY}
+      COOKIE_SECRET: ${COOKIE_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL}
+      PAY_MODE: ${PAY_MODE:-mock}
+      # 微信支付 (可选，留空走 mock)
+      WECHAT_PAY_MCHID: ${WECHAT_PAY_MCHID:-}
+      WECHAT_PAY_APPID: ${WECHAT_PAY_APPID:-}
+      WECHAT_PAY_SERIAL_NO: ${WECHAT_PAY_SERIAL_NO:-}
+      WECHAT_PAY_PRIVATE_KEY: ${WECHAT_PAY_PRIVATE_KEY:-}
+      WECHAT_PAY_NOTIFY_URL: ${WECHAT_PAY_NOTIFY_URL:-}
+      WECHAT_PAY_API_V3_KEY: ${WECHAT_PAY_API_V3_KEY:-}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - safety-net
+
+  runner:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+    container_name: safety-runner
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: mysql://lens_light:${MYSQL_PASSWORD}@mysql:3306/lens_light
+      ACCOUNT_ENC_KEY: ${ACCOUNT_ENC_KEY}
+      COOKIE_SECRET: ${COOKIE_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
+      RUNNER_CONCURRENCY: ${RUNNER_CONCURRENCY:-2}
+      WORKER_DIR: /app/apps/worker
+      PAY_MODE: ${PAY_MODE:-mock}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - safety-net
+
+volumes:
+  mysql-data:
+    driver: local
+
+networks:
+  safety-net:
+    driver: bridge

@@ -26,11 +26,13 @@ export class PythonJob extends EventEmitter {
   }
 
   start() {
-    const runnerPath = path.resolve(__dirname, '../../../worker/runner.py');
-    const cwd = path.resolve(__dirname, '../../../worker');
+    // In Docker, WORKER_DIR env var points to the worker scripts location.
+    // Fall back to monorepo layout (../../../worker relative to dist/lib/).
+    const workerDir = process.env.WORKER_DIR ?? path.resolve(__dirname, '../../../worker');
+    const runnerPath = path.join(workerDir, 'runner.py');
 
     this.child = spawn('python3', [runnerPath, '--task-id', this.taskId], {
-      cwd,
+      cwd: workerDir,
       env: { ...process.env, PYTHONUNBUFFERED: '1' },
       stdio: ['pipe', 'pipe', 'pipe'],
     });

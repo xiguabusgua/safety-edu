@@ -1,84 +1,73 @@
-# .github/workflows/deploy.yml
-# 推送 main 分支 → 自动构建 → scp → pm2 reload → 健康检查
+# =============================================================================
+# safety-edu · GitHub Actions 自动部署(Docker 模式)
 #
-# 首次使用设置:
-#   1. GitHub 仓库 → Settings → Secrets → Actions → 添加:
-#      - DEPLOY_HOST:  服务器 IP (如 154.9.25.199)
-#      - DEPLOY_USER:  SSH 用户名 (如 root)
-#      - DEPLOY_KEY:   SSH 私钥 (cat ~/.ssh/id_rsa 的全部内容)
-#      - DEPLOY_PORT:  SSH 端口 (默认 22, 可不加)
-#   2. 服务器提前跑一次"一次性准备"命令
-#      (见 README.md 或下面的注释块)
+# 触发:  push main / 手动 workflow_dispatch
+# 流程:  type-check → scp 推代码 → rsync 同步 → docker compose build/up → 健康检查
+# 路径:  服务器 /opt/safety-edu(项目) + /opt/safety-edu-staging(暂存)
+#
+# 首次使用(一次性):
+#   1. 仓库 Settings → Secrets and variables → Actions → New repository secret:
+#      - DEPLOY_HOST:  154.9.25.199
+#      - DEPLOY_USER:  deploy  (或 root,看 scripts/setup-server.sh 怎么配)
+#      - DEPLOY_KEY:   私钥全文 (cat ~/.ssh/safety_edu_deploy | head -1 不行,要从 -----BEGIN 开始到 -----END)
+#   2. 服务器跑一次 scripts/setup-server.sh(见该脚本顶部说明)
+# =============================================================================
 
 name: Deploy
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:  # 允许 Actions 页面手动触发,排查用
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false  # 不要打断进行中的部署,排队等
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Type check + Build
+      # ---- 1. 类型检查(防止发错代码) ----
+      - name: Type check (api + web)
         run: |
           cd apps/api
           DATABASE_URL='mysql://fake:fake@localhost:3306/fake' \
           JWT_SECRET='ci-typecheck-secret-32chars!' \
           COOKIE_SECRET='ci-typecheck-cookie-32chars!' \
           ACCOUNT_ENC_KEY=$(printf 'a%.0s' {1..64}) \
-          npx tsc --noEmit
+            npx tsc --noEmit
           cd ../web && npx tsc --noEmit
-          cd ../.. && pnpm build:all
 
-      - name: Package
-        run: |
-          tar czf deploy.tgz \
-            --exclude='node_modules' \
-            --exclude='.env' \
-            --exclude='.git' \
-            --exclude='*.log' \
-            --exclude='.reasonix' \
-            apps/api/dist \
-            apps/web/dist \
-            apps/api/package.json \
-            apps/api/prisma \
-            apps/worker \
-            packages \
-            ecosystem.config.cjs \
-            pnpm-workspace.yaml \
-            package.json \
-            pnpm-lock.yaml \
-            scripts/deploy.sh
-
-      - name: Upload to server
+      # ---- 2. 同步代码到服务器(走 staging 暂存) ----
+      #    用 rsync 模式,scp-action 自动调用 rsync
+      #    exclude: .env (服务端永不被覆盖) / .git / node_modules / docker volumes
+      - name: Sync code → /opt/safety-edu-staging
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT || 22 }}
-          source: deploy.tgz
-          target: /tmp/
+          source: "./"
+          target: "/opt/safety-edu-staging/"
+          rsync: true
+          args: >-
+            -avz
+            --exclude=.env
+            --exclude=mysql-data
+            --exclude=.git
+            --exclude=node_modules
+            --exclude=.reasonix
+            --exclude=.codegraph
+            --exclude=deploy.tgz
 
-      - name: Deploy & Restart
+      # ---- 3. 在服务器上:rsync staging → prod,build,up,verify ----
+      - name: Deploy · rsync → build → up → health check
         uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.DEPLOY_HOST }}
@@ -87,47 +76,50 @@ jobs:
           port: ${{ secrets.DEPLOY_PORT || 22 }}
           script: |
             set -e
-            APP_DIR=/www/wwwroot/safety-edu
-            TS=$(date +%s)
 
-            # 解压到 releases/<ts>/
-            mkdir -p "$APP_DIR/releases/$TS"
-            tar xzf /tmp/deploy.tgz -C "$APP_DIR/releases/$TS"
+            PROD=/opt/safety-edu
+            STAGING=/opt/safety-edu-staging
 
-            cd "$APP_DIR/releases/$TS"
+            # ---- 同步 staging → prod(保留 prod 自己的 .env) ----
+            cd "$PROD"
+            rsync -a --delete \
+              --exclude='.env' \
+              --exclude='mysql-data' \
+              --exclude='node_modules' \
+              "$STAGING/" "$PROD/"
 
-            # 安装生产依赖
-            pnpm install --frozen-lockfile --prod 2>/dev/null || true
+            # ---- 构建 + 启动 ----
+            echo "🐳 docker compose build..."
+            docker compose build 2>&1 | tail -30
 
-            # 数据库迁移
-            cd apps/api
-            npx prisma generate 2>/dev/null || true
-            npx prisma migrate deploy 2>/dev/null || echo "[warn] prisma migrate deploy 跳过(首次需手动执行)"
+            echo "🚀 docker compose up -d..."
+            docker compose up -d
 
-            cd "$APP_DIR"
-
-            # 共享 .env + logs
-            [ -f shared/.env ] && cp shared/.env "releases/$TS/.env"
-            rm -rf "releases/$TS/logs"
-            ln -snf "$APP_DIR/shared/logs" "releases/$TS/logs"
-
-            # 切换 current → 新版本
-            ln -snf "releases/$TS" current
-
-            # 启动/重启
-            pm2 startOrReload ecosystem.config.cjs --env production 2>&1 | tail -10
-
-            # 健康检查 (最多等 15s)
-            for i in $(seq 1 15); do
-              if curl -sf --max-time 2 http://127.0.0.1:3002/api/health > /dev/null 2>&1; then
-                echo "✅ 健康检查通过"
+            # ---- 等 MySQL(健康检查通过) ----
+            echo "⏳ Waiting for MySQL..."
+            for i in $(seq 1 60); do
+              if docker inspect --format='{{.State.Health.Status}}' safety-mysql 2>/dev/null | grep -q healthy; then
+                echo "✅ MySQL ready"
                 break
               fi
-              [ $i -eq 15 ] && { echo "❌ 健康检查失败"; pm2 logs safety-api --lines 10 --nostream; exit 1; }
-              sleep 1
+              [ "$i" -eq 60 ] && { echo "❌ MySQL 健康检查超时"; docker compose logs --tail=30 mysql; exit 1; }
+              sleep 2
             done
 
-            # 清理旧版本 (保留最近 5 个)
-            cd releases && ls -1t | tail -n +6 | xargs -r rm -rf
-            rm -f /tmp/deploy.tgz
-            echo "✅ 部署完成"
+            # ---- 等 API(自动跑 prisma migrate deploy) ----
+            echo "⏳ Waiting for API (runs prisma migrate deploy)..."
+            for i in $(seq 1 60); do
+              if curl -sf --max-time 3 http://localhost:3002/api/health > /dev/null 2>&1; then
+                echo "✅ API healthy"
+                docker compose ps
+                echo ""
+                echo "🎉 部署成功"
+                exit 0
+              fi
+              [ "$i" -eq 60 ] && {
+                echo "❌ API 健康检查失败,查看日志:"
+                docker compose logs --tail=80 api
+                exit 1
+              }
+              sleep 2
+            done

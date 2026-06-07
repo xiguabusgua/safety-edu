@@ -1,0 +1,23 @@
+#!/usr/bin/expect -f
+# Simple SSH test with password
+set timeout 30
+log_user 1
+
+spawn ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=10 root@154.9.25.199 echo "HELLO_OK"
+
+expect {
+    "password:" { 
+        send "sPDByUVNhK21Yyqg\r"
+        expect {
+            "HELLO_OK" { puts "SUCCESS" }
+            "Permission denied" { puts "FAILED_AUTH"; exit 1 }
+            timeout { puts "TIMEOUT_AFTER_PASS"; exit 1 }
+        }
+    }
+    "HELLO_OK" { puts "SUCCESS_NO_PASS" }
+    timeout { puts "TIMEOUT_INIT"; exit 1 }
+    eof { puts "EOF_EARLY"; exit 1 }
+}
+
+expect eof
+puts "DONE"

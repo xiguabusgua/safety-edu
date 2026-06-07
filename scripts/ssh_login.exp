@@ -1,0 +1,48 @@
+#!/usr/bin/expect -f
+log_user 1
+exp_internal 1
+set timeout 90
+
+spawn ssh -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=30 root@154.9.25.199
+
+expect {
+    -re "password:" { 
+        send "sPDByUVNhK21Yyqg\r"
+        exp_continue 
+    }
+    -re "Permission denied" { 
+        puts "===AUTH_FAILED===" 
+        exit 1 
+    }
+    -re "\[#$]" { 
+        puts "===AUTH_OK===" 
+    }
+    timeout { 
+        puts "===TIMEOUT===" 
+        exit 1 
+    }
+    eof { 
+        puts "===EOF===" 
+        exit 1 
+    }
+}
+
+send "hostname; whoami; echo DONE_MARKER\r"
+expect "DONE_MARKER"
+puts "===CMDS_OK==="
+
+send "uname -a\r"
+expect "#"
+puts "---uname done---"
+
+send "free -h | head -2\r"
+expect "#"
+puts "---free done---"
+
+send "docker --version 2>/dev/null || echo NO_DOCKER\r"
+expect "#"
+puts "---docker done---"
+
+send "exit\r"
+expect eof
+puts "===ALL_DONE==="

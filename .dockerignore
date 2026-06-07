@@ -1,0 +1,55 @@
+# Node
+node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+
+# Build artifacts
+dist/
+build/
+.next/
+out/
+
+# Env & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# DB & data
+*.db
+*.sqlite
+data/
+
+# Prisma dev
+apps/api/prisma/migrations/dev/
+
+# Local tools
+.codegraph/
+.mavis/
+.opencode/
+.reasonix/
+reasonix.toml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Git
+.git/
+.github/
