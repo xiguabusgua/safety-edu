@@ -1,0 +1,1252 @@
+[
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "宿舍内使用违规电器引发火灾时,正确的应急处置流程是()",
+    "options": [
+      "A.立即泼水灭火,同时拨打119",
+      "B.迅速关闭电源,使用干粉灭火器对准火源根部喷射",
+      "C.先抢救个人财物,再报警",
+      "D.打开门窗通风,降低烟雾浓度"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "某学生收到陌生短信:您已被选为江苏省大学生创新项目候选,需缴纳500元评审费确认资格,点击链接完成支付。该行为最可能属于()",
+    "options": [
+      "A.正规项目申报流程",
+      "B.冒充公检法诈骗",
+      "C.虚假中奖诈骗",
+      "D.虚假项目诈骗"
+    ],
+    "answer": "D",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "实验室使用浓硫酸时,若不慎溅到皮肤上,正确的处理方法是()",
+    "options": [
+      "A.立即用大量清水冲洗,再涂抹碳酸氢钠溶液",
+      "B.先用干布擦拭,再用大量清水冲洗,最后涂抹碳酸氢钠溶液",
+      "C.直接涂抹氢氧化钠溶液中和",
+      "D.用酒精擦拭后就医"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "交通安全",
+    "questionText": "大学生骑电动车往返校园时,下列行为符合交通安全规范的是()",
+    "options": [
+      "A.佩戴安全头盔,在机动车道右侧行驶",
+      "B.载人时加快车速,避免影响交通",
+      "C.边骑车边看手机导航",
+      "D.夜间骑行时开启车灯"
+    ],
+    "answer": "D",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "遭遇网络谣言时,正确的应对措施是()",
+    "options": [
+      "A.立即转发提醒他人",
+      "B.自行调查后在社交平台发布真相",
+      "C.向网信部门或平台举报,等待官方核实",
+      "D.联系谣言中涉及的当事人私下确认"
+    ],
+    "answer": "C",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "图书馆内突发火灾,烟雾较大时,逃生应()",
+    "options": [
+      "A.直立快速跑向出口",
+      "B.用湿毛巾捂住口鼻,低姿贴近地面前行",
+      "C.乘坐电梯逃生",
+      "D.躲进卫生间等待救援"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "参加校外实习时,发现实习单位要求签署工伤概不负责的协议,正确做法是()",
+    "options": [
+      "A.为保住实习机会,直接签署",
+      "B.要求单位删除该条款,否则拒绝签署",
+      "C.与其他实习生协商后共同签署",
+      "D.签署后向劳动监察部门匿名举报"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "夏季高温天气,宿舍内预防中暑的正确措施是()",
+    "options": [
+      "A.长时间关闭门窗开空调",
+      "B.大量饮用冰镇碳酸饮料",
+      "C.保持室内通风,备足淡盐水",
+      "D.穿着紧身衣物减少汗液蒸发"
+    ],
+    "answer": "C",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "财物安全",
+    "questionText": "收到陌生来电称您的银行卡涉嫌洗钱,需将资金转入安全账户配合调查,正确应对是()",
+    "options": [
+      "A.询问对方工号并记录",
+      "B.立即转账避免法律责任",
+      "C.挂断电话,拨打银行官方客服核实",
+      "D.要求对方提供书面通知"
+    ],
+    "answer": "C",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "实验室使用高压气瓶时,错误操作是()",
+    "options": [
+      "A.定期检查气瓶阀门和压力表",
+      "B.将气瓶固定在专用支架上",
+      "C.开启阀门时快速旋转手柄",
+      "D.远离热源和明火存放"
+    ],
+    "answer": "C",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "财物安全",
+    "questionText": "校园防盗的常见措施包括()",
+    "options": [
+      "A.宿舍无人时锁好门窗",
+      "B.贵重物品随意放置在桌面",
+      "C.陌生人进入宿舍时主动询问",
+      "D.随身携带校园卡和手机"
+    ],
+    "answer": "ACD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "网络安全中,个人信息保护的正确做法有()",
+    "options": [
+      "A.不随意扫描陌生二维码",
+      "B.在公共WiFi下登录网银",
+      "C.社交平台设置隐私权限",
+      "D.填写问卷时隐瞒真实姓名"
+    ],
+    "answer": "ACD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "火灾逃生时,禁止的行为有()",
+    "options": [
+      "A.乘坐电梯",
+      "B.用湿毛巾捂住口鼻",
+      "C.贪恋财物返回火场",
+      "D.从高楼跳下逃生"
+    ],
+    "answer": "ACD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "预防电信诈骗的关键要点包括()",
+    "options": [
+      "A.不轻信陌生电话和短信",
+      "B.不透露个人信息和验证码",
+      "C.不点击陌生链接",
+      "D.收到中奖信息立即联系兑奖"
+    ],
+    "answer": "ABC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "实验室化学试剂管理的正确要求是()",
+    "options": [
+      "A.易燃试剂与氧化剂分开存放",
+      "B.剧毒试剂由专人专柜保管",
+      "C.过期试剂自行倒入下水道",
+      "D.试剂标签模糊时重新标注"
+    ],
+    "answer": "ABD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "防灾减灾",
+    "questionText": "遭遇拥挤踩踏事故时,正确的自我保护方法有()",
+    "options": [
+      "A.双手抱头,身体蜷缩",
+      "B.贴近墙壁,沿人流方向移动",
+      "C.逆着人流方向强行突围",
+      "D.抓住固定物,避免被推倒"
+    ],
+    "answer": "ABD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "财物安全",
+    "questionText": "大学生兼职时需防范的风险包括()",
+    "options": [
+      "A.要求缴纳押金或培训费",
+      "B.工作内容与面试承诺不符",
+      "C.用人单位未签订书面协议",
+      "D.按日结算工资且无拖欠"
+    ],
+    "answer": "ABC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "防灾减灾",
+    "questionText": "台风来临时,正确的避险措施是()",
+    "options": [
+      "A.留在坚固建筑内,关闭门窗",
+      "B.到海边观看台风景观",
+      "C.检查阳台物品是否固定",
+      "D.准备应急食物和饮用水"
+    ],
+    "answer": "ACD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "心肺复苏(CPR)操作中,正确步骤包括()",
+    "options": [
+      "A.轻拍双肩呼喊,确认意识丧失",
+      "B.立即进行胸外按压,频率100-120次/分钟",
+      "C.按压深度成人5-6厘米",
+      "D.每30次按压后进行2次人工呼吸"
+    ],
+    "answer": "ABCD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "预防宿舍火灾的注意事项有()",
+    "options": [
+      "A.不私拉乱接电线",
+      "B.使用小功率电热毯整夜加热",
+      "C.不在宿舍内焚烧杂物",
+      "D.充电器使用后及时拔下"
+    ],
+    "answer": "ACD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "宿舍内可以使用功率不超过500瓦的电热杯,只要不被宿管发现",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "收到航班取消短信,要求拨打短信中的电话办理改签,应直接拨打航空公司官方客服核实",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "实验室发生少量化学品泄漏时,应立即用拖把清理并倒入垃圾桶",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "交通安全",
+    "questionText": "乘坐出租车时,应记录车牌信息并告知亲友乘车路线",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "网络贷款无抵押、低利息是正规平台的常见宣传,大学生可放心申请",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "防灾减灾",
+    "questionText": "地震发生时,在教学楼内应立即跑向阳台或窗户躲避",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "发现同学出现中暑症状(头晕、恶心),应立即将其转移至阴凉处,解开衣领,补充淡盐水",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "财物安全",
+    "questionText": "校园内捡到他人校园卡,应及时交到学校保卫处或卡务中心,不可随意使用",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "实验室使用完毕后,应关闭水电、燃气阀门,锁好门窗方可离开",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "遇到陌生人以求助为由借手机打电话,应直接将手机交予对方使用",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC1-2025竞赛"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "遇到火灾时,以下哪种行为是错误的",
+    "options": [
+      "A.用湿毛巾捂住口鼻",
+      "B.乘坐电梯逃生",
+      "C.沿着安全出口指示标志逃生",
+      "D.拨打119报警"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "在校园内遇到陌生人搭讪,以下哪种做法是错误的",
+    "options": [
+      "A.保持警惕,不随意透露个人信息",
+      "B.跟随陌生人去偏僻地方",
+      "C.及时向老师或校园安保人员报告",
+      "D.拒绝陌生人的礼物"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "在实验室中,以下哪种行为是错误的",
+    "options": [
+      "A.严格遵守实验室安全规程",
+      "B.随意混合化学试剂",
+      "C.使用防护眼镜和手套",
+      "D.妥善存放易燃物品"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "以下哪种措施不能预防食物中毒",
+    "options": [
+      "A.购买时检查食品保质期",
+      "B.食用未煮熟的肉类",
+      "C.储存食物时生熟分开",
+      "D.注意饮食卫生"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "防灾减灾",
+    "questionText": "遇到地震时,以下哪种行为是错误的",
+    "options": [
+      "A.躲在桌子下面",
+      "B.乘坐电梯逃生",
+      "C.从窗户跳下",
+      "D.立即拨打紧急电话"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪种行为不属于个人隐私保护",
+    "options": [
+      "A.不随意透露个人身份证信息",
+      "B.在社交媒体上公开自己的住址",
+      "C.使用公共电脑时不清除浏览记录",
+      "D.设置复杂的密码"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "以下哪种措施不能预防溺水",
+    "options": [
+      "A.在没有救生员的水域游泳",
+      "B.学习基本的游泳技能",
+      "C.穿戴救生衣",
+      "D.不去危险水域"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "遇到陌生人求助时,以下哪种做法是错误的",
+    "options": [
+      "A.询问对方详细情况",
+      "B.向周围人求助",
+      "C.直接给予财物帮助",
+      "D.直接拒绝"
+    ],
+    "answer": "C",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "交通安全",
+    "questionText": "以下哪种行为不属于交通安全",
+    "options": [
+      "A.遵守交通信号灯",
+      "B.酒后驾车",
+      "C.系安全带",
+      "D.边走路边看手机"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪种措施不能预防诈骗",
+    "options": [
+      "A.接听陌生来电",
+      "B.核实信息来源",
+      "C.不向陌生人汇款",
+      "D.不随意透露银行账户信息"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪种行为不属于健康生活习惯",
+    "options": [
+      "A.定期进行体育锻炼",
+      "B.熬夜玩游戏",
+      "C.饮食均衡",
+      "D.吸烟酗酒"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "遇到紧急情况时,以下哪种做法是错误的",
+    "options": [
+      "A.保持冷静,迅速评估情况",
+      "B.盲目跟随人群",
+      "C.立即拨打紧急电话",
+      "D.听从工作人员指引"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "以下哪种措施不能预防火灾",
+    "options": [
+      "A.定期检查电器线路",
+      "B.在床上吸烟",
+      "C.使用明火照明",
+      "D.妥善存放易燃物品"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪种行为不属于个人信息安全",
+    "options": [
+      "A.在公共场合大声谈论个人财务状况",
+      "B.使用公共Wi-Fi进行网上银行操作",
+      "C.定期更改密码",
+      "D.不随意丢弃含有个人信息的文件"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪种措施不能预防传染病",
+    "options": [
+      "A.接种疫苗",
+      "B.与患者密切接触",
+      "C.保持良好的个人卫生",
+      "D.在流行病高发期不去人群密集的地方"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪种行为不属于环境保护",
+    "options": [
+      "A.垃圾分类",
+      "B.随意丢弃塑料垃圾",
+      "C.节约用水用电",
+      "D.减少塑料使用"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "交通安全",
+    "questionText": "以下哪种措施不能预防交通事故",
+    "options": [
+      "A.遵守交通信号灯",
+      "B.闯红灯",
+      "C.系安全带",
+      "D.不酒后驾车"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "以下哪种行为不属于网络安全",
+    "options": [
+      "A.使用复杂密码",
+      "B.在公共网络上进行金融交易",
+      "C.不随意点击不明链接",
+      "D.定期更新操作系统"
+    ],
+    "answer": "B",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "以下哪种做法不能避免校园欺凌",
+    "options": [
+      "A.保持沉默,避免引起更多注意",
+      "B.向老师或学校管理人员报告",
+      "C.寻求同学或朋友的帮助",
+      "D.及时向家长反映情况"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "以下哪种食物中毒的处理方式是错误的",
+    "options": [
+      "A.立即就医",
+      "B.保留可疑食物样本",
+      "C.继续进食",
+      "D.告知一同就餐者"
+    ],
+    "answer": "C",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "遇到火灾时,以下哪些行为是正确的",
+    "options": [
+      "A.用湿毛巾捂住口鼻",
+      "B.乘坐电梯逃生",
+      "C.从窗户跳下",
+      "D.沿着安全出口指示标志逃生"
+    ],
+    "answer": "AD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "在校园内遇到陌生人搭讪,以下哪些做法是正确的",
+    "options": [
+      "A.保持警惕,不随意透露个人信息",
+      "B.跟随陌生人去偏僻地方",
+      "C.接受陌生人的礼物",
+      "D.及时向老师或校园安保人员报告"
+    ],
+    "answer": "AD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "以下哪些行为属于网络安全防护",
+    "options": [
+      "A.不随意点击不明链接",
+      "B.使用复杂密码",
+      "C.在公共网络上进行金融交易",
+      "D.定期更新操作系统和应用软件"
+    ],
+    "answer": "ABD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "遇到校园欺凌时,以下哪些做法是正确的",
+    "options": [
+      "A.保持沉默,避免引起更多注意",
+      "B.向老师或学校管理人员报告",
+      "C.以暴制暴,报复对方",
+      "D.寻求同学或朋友的帮助"
+    ],
+    "answer": "BD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "在实验室中,以下哪些行为是安全的",
+    "options": [
+      "A.严格遵守实验室安全规程",
+      "B.随意混合化学试剂",
+      "C.在实验室内饮食",
+      "D.使用防护眼镜和手套"
+    ],
+    "answer": "AD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "以下哪些措施可以预防食物中毒",
+    "options": [
+      "A.购买时检查食品保质期",
+      "B.食用未煮熟的肉类",
+      "C.储存食物时生熟分开",
+      "D.食用过期食品"
+    ],
+    "answer": "AC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "防灾减灾",
+    "questionText": "遇到地震时,以下哪些行为是正确的",
+    "options": [
+      "A.躲在桌子下面",
+      "B.乘坐电梯逃生",
+      "C.从窗户跳下",
+      "D.立即拨打紧急电话"
+    ],
+    "answer": "AD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪些行为属于个人隐私保护",
+    "options": [
+      "A.不随意透露个人身份证信息",
+      "B.在社交媒体上公开自己的住址",
+      "C.使用公共电脑时不清除浏览记录",
+      "D.设置复杂的密码"
+    ],
+    "answer": "AD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "以下哪些措施可以预防溺水",
+    "options": [
+      "A.在没有救生员的水域游泳",
+      "B.学习基本的游泳技能",
+      "C.穿戴救生衣",
+      "D.酒后游泳"
+    ],
+    "answer": "BC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "遇到陌生人求助时,以下哪些做法是正确的",
+    "options": [
+      "A.直接给予财物帮助",
+      "B.询问对方详细情况",
+      "C.向周围人求助",
+      "D.直接拒绝"
+    ],
+    "answer": "BC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "交通安全",
+    "questionText": "以下哪些行为属于交通安全",
+    "options": [
+      "A.遵守交通信号灯",
+      "B.酒后驾车",
+      "C.边走路边看手机",
+      "D.系安全带"
+    ],
+    "answer": "AD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪些措施可以预防诈骗",
+    "options": [
+      "A.接听陌生来电",
+      "B.向陌生人汇款",
+      "C.核实信息来源",
+      "D.随意透露银行账户信息"
+    ],
+    "answer": "AC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪些行为属于健康生活习惯",
+    "options": [
+      "A.定期进行体育锻炼",
+      "B.熬夜玩游戏",
+      "C.饮食均衡",
+      "D.吸烟酗酒"
+    ],
+    "answer": "AC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "遇到紧急情况时,以下哪些做法是正确的",
+    "options": [
+      "A.保持冷静,迅速评估情况",
+      "B.盲目跟随人群",
+      "C.立即拨打紧急电话",
+      "D.忽视安全指示"
+    ],
+    "answer": "AC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "消防安全",
+    "questionText": "以下哪些措施可以预防火灾",
+    "options": [
+      "A.定期检查电器线路",
+      "B.在床上吸烟",
+      "C.使用明火照明",
+      "D.妥善存放易燃物品"
+    ],
+    "answer": "AD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪些行为属于个人信息安全",
+    "options": [
+      "A.在公共场合大声谈论个人财务状况",
+      "B.使用公共Wi-Fi进行网上银行操作",
+      "C.定期更改密码",
+      "D.随意丢弃含有个人信息的文件"
+    ],
+    "answer": "CD",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪些措施可以预防传染病",
+    "options": [
+      "A.接种疫苗",
+      "B.与患者密切接触",
+      "C.保持良好的个人卫生",
+      "D.在流行病高发期去人群密集的地方"
+    ],
+    "answer": "AC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "遇到网络暴力时,以下哪些做法是正确的",
+    "options": [
+      "A.反击对方",
+      "B.保持沉默",
+      "C.向学校或警方报告",
+      "D.与对方进行线下见面"
+    ],
+    "answer": "AC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "以下哪些行为属于环境保护",
+    "options": [
+      "A.垃圾分类",
+      "B.随意丢弃塑料垃圾",
+      "C.节约用水用电",
+      "D.过度使用空调"
+    ],
+    "answer": "AC",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "心理健康",
+    "questionText": "遇到心理问题时,以下哪些做法是正确的",
+    "options": [
+      "A.寻求专业心理咨询",
+      "B.向朋友倾诉",
+      "C.独自承受",
+      "D.通过饮酒来缓解压力"
+    ],
+    "answer": "AB",
+    "questionType": "multiple",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "在校园内,可以随意采摘植物",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "网络交友时,应该透露自己的真实姓名和住址",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "实验与宿舍",
+    "questionText": "实验室内,可以随意混合化学试剂",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "遇到校园欺凌时,应该保持沉默,避免引起更多注意",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "食物中毒后,应该立即就医",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "防灾减灾",
+    "questionText": "地震时,应该躲在桌子下面",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "个人隐私保护包括不随意透露个人身份证信息",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "网络安全",
+    "questionText": "遇到网络暴力时,应该及时向老师或校园安保人员报告",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "对",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "应急救护",
+    "questionText": "预防溺水的措施之一是在没有救生员的水域游泳",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "财物安全",
+    "questionText": "遇到陌生人求助时,应该直接给予财物帮助",
+    "options": [
+      "对",
+      "错"
+    ],
+    "answer": "错",
+    "questionType": "judge",
+    "hitCount": 0,
+    "_src": "SRC2-2025新生"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "人身安全",
+    "questionText": "大学生遇到陌生人求助借钱,却又不能确定对方情况真假时,不正确的做法是()",
+    "options": [
+      "A.直接给钱",
+      "B.向老师和同学征求意见",
+      "C.婉言拒绝",
+      "D.向公安部门求助"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC3-2023入学"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "在校园里东西丢失应该()",
+    "options": [
+      "A.拿旁边其他人的东西作为补偿",
+      "B.自认倒霉",
+      "C.立刻逐个检查周围人的背包",
+      "D.先到保卫部门报案登记,视情况再报警"
+    ],
+    "answer": "D",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC3-2023入学"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "公共安全",
+    "questionText": "在车站碰到自称是学长(学姐)来接站时错误的做法是()",
+    "options": [
+      "A.电话联系辅导员确认",
+      "B.请学长(学姐)出示证件核实学姐信息",
+      "C.查看校内接站安排信息",
+      "D.直接跟学长(学姐)走"
+    ],
+    "answer": "D",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC3-2023入学"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "入学安全",
+    "questionText": "报到时你是第一个到寝室的,随后一个陌生人进来说自己也是这个寝室的人,这时正好你要出去,怎么办",
+    "options": [
+      "A.锁好柜子或带好自己的贵重物品再出门",
+      "B.既然是一个宿舍的,以后就是同学了,放心地出门",
+      "C.正好自己要出去,把自己的贵重物品交给室友看管一下",
+      "D.宿舍里很安全,宿舍楼都有门禁不用担心"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC3-2023入学"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "入学安全",
+    "questionText": "军训的时候运动量大,为了保证体力,怎样能一定程度上减少中暑晕倒的可能",
+    "options": [
+      "A.注意膳食平衡,适当补充维生素",
+      "B.怕上厕所,不敢喝太多的水",
+      "C.每顿饭只吃高热量的肉食",
+      "D.多喝一些糖分高的饮料"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC3-2023入学"
+  },
+  {
+    "platform": "jiangsu",
+    "category": "入学安全",
+    "questionText": "新生到校,有关食品安全正确的做法是()",
+    "options": [
+      "A.尽量在学校食堂用餐,外出用餐或订外卖尽量选择正规餐馆",
+      "B.随便到卫生条件差的大排档和路边摊用餐",
+      "C.经常订外卖,而且放在大门口很久才去取",
+      "D.嫌远或人多,经常选择方便面等快捷食品"
+    ],
+    "answer": "A",
+    "questionType": "single",
+    "hitCount": 0,
+    "_src": "SRC3-2023入学"
+  }
+]

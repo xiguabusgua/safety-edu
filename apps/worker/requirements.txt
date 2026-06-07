@@ -1,0 +1,23 @@
+# safety-edu worker runtime dependencies.
+#
+# Python ≥ 3.10 (we use PEP-604 `X | None` / `dict | None` syntax via `from __future__ import annotations`,
+# 3.9 也行;3.10+ 跑得最舒服)。本文件锁的是 worker 进程实际加载的第三方包,
+# 标准库 (json / os / sys / re / time / hashlib / sqlite3 / uuid / base64 / random / tempfile / argparse / traceback) 不需要列。
+#
+# 来源对照(grep "^import\\|^from" apps/worker/ 实际用到):
+#   - requests         ← weban/api.py, jiangsu/platform.py  (HTTP)
+#   - pyaes            ← weban/api.py                       (WeBan 登录 payload AES-ECB / apinext AES-CBC)
+#   - ddddocr          ← weban/client.py                    (验证码 OCR 自动识别)
+#   - onnxruntime      ← ddddocr 推理后端(CPU build)
+#   - Pillow           ← ddddocr 图像输入
+#   - numpy            ← ddddocr 图像 / 概率数组
+#
+# 注:本项目源自 hangone/WeBan (GPL-3.0) 与 Scwizard/jiangsu-safety-platform-skip (Apache-2.0),
+# 见根目录 LICENSE 与 README.md 的 License 段。
+
+requests>=2.31.0          # HTTP 客户端 (weban/api.py、jiangsu/platform.py)
+pyaes>=1.6.1              # AES-ECB / AES-CBC 加密 (WeBan 登录 + apinext)
+ddddocr>=1.5.0            # 验证码 OCR 自动识别 (登录 10 次自动重试用)
+onnxruntime>=1.18.0       # ddddocr 的 ONNX 推理后端 (CPU build)
+Pillow>=10.0.0            # 验证码图片解码 (ddddocr 输入)
+numpy>=1.26.0             # ddddocr 内部 ndarray 处理

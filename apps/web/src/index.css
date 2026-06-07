@@ -1,0 +1,469 @@
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import '@fontsource-variable/newsreader';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light mode: 暖色 editorial */
+  /* 颜色变量统一 RGB 三段数字格式,配合 tailwind 的 rgb(var(--xxx) / <alpha-value>) */
+  --bg-base: 247 246 243;
+  --bg-surface: 255 255 255;
+  --bg-elevated: 249 249 248;
+  --bg-sunken: 239 238 234;
+
+  --ink-primary: 17 17 17;
+  --ink-secondary: 47 52 55;
+  --ink-muted: 120 119 116;
+  --ink-ghost: 0 0 0;
+
+  --line: 217 214 207;
+  --line-subtle: 0 0 0;
+  --line-strong: 0 0 0;
+
+  --accent-pale-red-bg: 253 235 236;
+  --accent-pale-red-fg: 159 47 45;
+  --accent-pale-blue-bg: 225 243 254;
+  --accent-pale-blue-fg: 31 108 159;
+  --accent-pale-green-bg: 237 243 236;
+  --accent-pale-green-fg: 52 101 56;
+  --accent-pale-yellow-bg: 251 243 219;
+  --accent-pale-yellow-fg: 149 100 0;
+  --accent-pale-violet-bg: 241 238 251;
+  --accent-pale-violet-fg: 86 66 166;
+
+  /* Brand accent · sage green (主品牌色) */
+  --brand: 59 91 74;
+  --brand-soft: 124 152 133;
+  --brand-tint: 232 239 231;
+  --brand-dark: 30 58 45;
+
+  /* Shadow tokens (走主题:light 几乎不可见) */
+  --shadow-card: 0 0 0 1px rgb(var(--line) / 1);
+  --shadow-card-hover: 0 2px 8px rgb(0 0 0 / 0.04);
+
+  --grain-opacity: 0.035;
+  --ambient-opacity: 0.04;
+}
+
+.dark {
+  /* Dark mode: 暗色 / OLED 风 */
+  --bg-base: 10 10 10;
+  --bg-surface: 19 19 19;
+  --bg-elevated: 26 26 26;
+  --bg-sunken: 5 5 5;
+
+  --ink-primary: 237 237 237;
+  --ink-secondary: 161 161 161;
+  --ink-muted: 107 107 107;
+  --ink-ghost: 255 255 255;
+
+  --line: 255 255 255;
+  --line-subtle: 255 255 255;
+  --line-strong: 255 255 255;
+
+  --accent-pale-red-bg: 42 20 22;
+  --accent-pale-red-fg: 232 163 163;
+  --accent-pale-blue-bg: 15 34 51;
+  --accent-pale-blue-fg: 147 197 232;
+  --accent-pale-green-bg: 20 36 26;
+  --accent-pale-green-fg: 152 212 173;
+  --accent-pale-yellow-bg: 43 35 16;
+  --accent-pale-yellow-fg: 232 200 127;
+  --accent-pale-violet-bg: 31 26 46;
+  --accent-pale-violet-fg: 181 165 232;
+
+  /* Dark mode brand · 提亮以保持可读性 */
+  --brand: 124 152 133;
+  --brand-soft: 163 181 168;
+  --brand-tint: 38 56 47;
+  --brand-dark: 199 214 203;
+
+  /* Dark mode shadow:靠白色低 alpha 描边 */
+  --shadow-card: 0 0 0 1px rgb(var(--line) / 0.08);
+  --shadow-card-hover: 0 2px 8px rgb(0 0 0 / 0.4);
+
+  --grain-opacity: 0.05;
+  --ambient-opacity: 0.06;
+}
+
+:root {
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 240ms;
+  --duration-base: 420ms;
+  --duration-slow: 720ms;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    @apply bg-bg-base text-ink-primary antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    font-size: 15px;
+    transition:
+      background-color var(--duration-base) var(--ease-spring),
+      color var(--duration-base) var(--ease-spring);
+  }
+
+  body {
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        rgba(155, 132, 102, 0.06) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 90% 10%,
+        rgba(120, 130, 145, 0.04) 0%,
+        transparent 70%
+      );
+    background-attachment: fixed;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(
+        ellipse 80% 50% at 50% -10%,
+        rgba(120, 90, 200, 0.08) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 40% at 90% 10%,
+        rgba(80, 100, 130, 0.06) 0%,
+        transparent 70%
+      );
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  ::selection {
+    @apply bg-ink-primary text-bg-surface;
+  }
+
+  /* skip-to-content,无障碍 a11y */
+  .skip-to-content {
+    @apply absolute -top-12 left-4 z-50 rounded-md bg-ink-primary px-4 py-2 text-sm font-medium text-bg-surface transition-all duration-200 focus:top-4;
+  }
+
+  /* 滚动入场 */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(8px);
+    transition:
+      opacity var(--duration-slow) var(--ease-spring-out),
+      transform var(--duration-slow) var(--ease-spring-out),
+      filter var(--duration-slow) var(--ease-spring-out);
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@layer components {
+  .bezel-shell {
+    @apply rounded-[1.75rem] p-1.5;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.6) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    border: 1px solid var(--line);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      0 0 0 0.5px rgba(0, 0, 0, 0.04);
+    transition:
+      background var(--duration-base) var(--ease-spring),
+      border-color var(--duration-base) var(--ease-spring);
+  }
+
+  .dark .bezel-shell {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 0 0.5px rgba(0, 0, 0, 0.4);
+  }
+
+  .bezel-core {
+    @apply rounded-[1.375rem];
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  }
+
+  .dark .bezel-core {
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
+  }
+
+  .card {
+    @apply rounded-2xl bg-bg-surface border border-line p-6 transition-all duration-200;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;
+  }
+
+  .dark .card {
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  }
+
+  .card-hover {
+    @apply hover:border-ink-primary/20;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.5) inset,
+      0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark .card-hover {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-pill px-4 py-2.5 text-sm font-medium;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-ink-primary/20 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base;
+    @apply disabled:opacity-50 disabled:pointer-events-none;
+    transition:
+      transform var(--duration-fast) var(--ease-spring),
+      background-color var(--duration-fast) var(--ease-spring),
+      box-shadow var(--duration-fast) var(--ease-spring),
+      color var(--duration-fast) var(--ease-spring);
+    @apply active:scale-[0.97];
+  }
+
+  .btn-primary {
+    @apply btn bg-ink-primary text-bg-surface;
+    @apply hover:bg-ink-secondary;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.1) inset,
+      0 4px 12px -2px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-ghost {
+    @apply btn text-ink-secondary hover:text-ink-primary hover:bg-ink-primary/[0.04];
+  }
+
+  .btn-outline {
+    @apply btn border border-line text-ink-primary hover:bg-ink-primary/[0.03] hover:border-ink-primary/20;
+  }
+
+  .btn-icon-nest {
+    @apply ml-1 -mr-1 w-7 h-7 rounded-pill inline-flex items-center justify-center transition-transform;
+    @apply bg-ink-primary/0;
+  }
+  .btn-primary .btn-icon-nest {
+    @apply bg-bg-surface/10;
+  }
+  .btn-outline .btn-icon-nest,
+  .btn-ghost .btn-icon-nest {
+    @apply bg-ink-primary/[0.04];
+  }
+  .btn:hover .btn-icon-nest {
+    transform: translate(2px, -1px) scale(1.05);
+  }
+
+  .input {
+    @apply w-full rounded-xl bg-bg-surface border border-line px-3.5 py-2.5 text-sm;
+    @apply placeholder:text-ink-muted;
+    @apply focus:outline-none focus:border-ink-primary/40 focus:ring-2 focus:ring-ink-primary/10;
+    @apply transition-all duration-200;
+  }
+
+  .label {
+    @apply block text-xs text-ink-secondary mb-1.5 font-medium;
+  }
+
+  .smallcaps {
+    @apply text-[10px] tracking-[0.12em] uppercase text-ink-muted font-medium;
+  }
+
+  .skeleton {
+    @apply rounded-md bg-bg-elevated;
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.03) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+
+  .dark .skeleton {
+    background-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.04) 50%,
+      transparent 100%
+    );
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-pill px-2 py-0.5 text-[10px] tracking-[0.05em] uppercase font-medium;
+  }
+
+  .os-chrome {
+    @apply flex items-center gap-1.5 px-3.5 py-2.5 border-b border-line bg-bg-elevated rounded-t-card;
+  }
+  .os-dot {
+    @apply w-2.5 h-2.5 rounded-full bg-[#E6E5E2];
+  }
+
+  kbd {
+    @apply inline-flex items-center justify-center min-w-[1.5rem] h-6 px-1.5 rounded border border-line bg-bg-elevated text-ink-secondary font-mono text-[10px];
+  }
+}
+
+/* Marquee 跑马灯:无限循环 + hover 暂停 */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* Hero 字符 kinetic 进场 */
+@keyframes charRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0.4em) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+.char-rise {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.4em);
+  animation: charRise 720ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .char-rise {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.18);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Ambient gradient blob */
+.ambient-blob {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: var(--ambient-opacity);
+  @apply animate-ambient-drift;
+  background: radial-gradient(
+    circle,
+    rgba(196, 130, 89, 0.6) 0%,
+    transparent 70%
+  );
+  transition: opacity var(--duration-slow) var(--ease-spring);
+}
+
+.dark .ambient-blob {
+  background: radial-gradient(
+    circle,
+    rgba(120, 80, 200, 0.6) 0%,
+    transparent 70%
+  );
+}
+
+/* 胶片颗粒 / noise overlay */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  transition: opacity var(--duration-slow) var(--ease-spring);
+}
+
+.dark .grain-overlay {
+  mix-blend-mode: screen;
+}

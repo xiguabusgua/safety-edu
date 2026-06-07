@@ -1,0 +1,19 @@
+{
+  "name": "safety-edu",
+  "version": "0.1.0",
+  "private": true,
+  "description": "合并 jiangsu-safety-platform-skip + WeBan 的安全教育一站式平台",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "build:web": "pnpm --filter web build",
+    "build:api": "pnpm --filter api build",
+    "build:all": "pnpm -r build",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.12.0"
+}

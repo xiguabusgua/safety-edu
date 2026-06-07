@@ -1,0 +1,138 @@
+// Prisma schema for safety-edu
+// 数据库: MySQL,需要本地或远程 MySQL 服务
+// DATABASE_URL 形如 mysql://user:pass@host:port/lens_light
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ============== 匿名用户（cookie deviceId 关联） ==============
+// 不强制注册，但为了"统计多少用户/地区分布"，后台隐式记录
+// 用户无需感知，浏览器种 HttpOnly cookie 即可识别
+model User {
+  id              String    @id @default(cuid())
+  deviceId        String    @unique // cookie 里的 base64url，2 年有效
+  firstSeen       DateTime  @default(now())
+  lastSeen        DateTime  @default(now())
+  taskCount       Int       @default(0)
+  // 推断信息
+  province        String? // 省份（从学校名/IP 推断）
+  city            String? // 城市
+  lastSchool      String? // 最近一次任务的学校名(跟 province/city 区分开,用于学校分布统计)
+  ipFirst         String? // 首次访问 IP
+  ipLast          String?
+  // 微信扫码登录后绑定
+  wechatOpenid    String?   @unique
+  wechatUnionid   String?   @unique
+  // 邮箱登录
+  email           String?   @unique
+  emailVerifiedAt DateTime?
+  // 状态
+  isBlocked       Boolean   @default(false)
+  notes           String?
+
+  tasks Task[]
+
+  @@index([firstSeen])
+  @@index([province])
+  @@index([lastSchool])
+}
+
+// ============== 用户填的"一次性"任务 ==============
+// 不再做"24h 后清除账号"——保留历史便于用户回看 / 复购
+// 敏感数据仍加密存
+model Task {
+  id            String    @id @default(cuid())
+  userId        String? // 关联 User（不强制，没识别上的也允许）
+  user          User?     @relation(fields: [userId], references: [id])
+  platform      String // 'weban' | 'jiangsu'
+  status        String    @default("awaiting_payment")
+  // 学校 / 地区（用于统计）
+  schoolName    String? // 显式提交的学校名
+  province      String? // 推断或填的省份
+  city          String?
+  // 加密的账号凭据（AES-256-GCM）
+  credsCipher   String
+  credsIv       String
+  credsTag      String
+  // 任务选项
+  options       String?   // JSON stringified
+  // 完成通知通道(可选,前端 Submit 时附带)
+  notifyChannel String? // 'email' | 'wechat'
+  notifyTarget  String? // email 地址 / 微信 openid
+  // 支付
+  amount        Int       @default(0) // 分
+  paidAt        DateTime?
+  payTradeNo    String?
+  payChannel    String? // 'wechat_native' | 'mock'
+  // 结果
+  result        String?   // JSON stringified
+  errorMsg      String?
+  // 时间
+  createdAt     DateTime  @default(now())
+  startedAt     DateTime?
+  finishedAt    DateTime?
+  progressJson  String?
+
+  events TaskEvent[]
+
+  @@index([status, paidAt])
+  @@index([paidAt, status])
+  @@index([userId, createdAt])
+  @@index([platform, createdAt])
+  @@index([schoolName])
+  @@index([province])
+  @@index([createdAt])
+  @@index([amount])
+}
+
+// ============== 任务执行事件 ==============
+model TaskEvent {
+  id        Int      @id @default(autoincrement())
+  taskId    String
+  event     String
+  payload   String   // JSON stringified
+  createdAt DateTime @default(now())
+
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId, id])
+}
+
+// ============== 管理员 ==============
+model Admin {
+  id           String    @id @default(cuid())
+  username     String    @unique
+  passwordHash String
+  role         String    @default("admin")
+  createdAt    DateTime  @default(now())
+  lastLoginAt  DateTime?
+}
+
+// ============== 通用题库 ==============
+model Question {
+  id           Int      @id @default(autoincrement())
+  platform     String
+  category     String?
+  questionText String
+  options      String?   // JSON stringified (array of strings)
+  answer       String
+  questionType String   @default("single")
+  hitCount     Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([platform, category])
+}
+
+// ============== 配置项（KV） ==============
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
